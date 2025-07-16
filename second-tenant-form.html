@@ -292,19 +292,17 @@
         // Set minimum date to today
         document.getElementById('moveInDate').min = new Date().toISOString().split('T')[0];
         
-        // Handle form submission
         // Get URL parameters
-const urlParams = new URLSearchParams(window.location.search);
-const itemId = urlParams.get('itemId');
-const prefilledEmail = urlParams.get('email');
+        const urlParams = new URLSearchParams(window.location.search);
+        const itemId = urlParams.get('itemId');
+        const prefilledEmail = urlParams.get('email');
 
-// Pre-fill email if provided
-if (prefilledEmail) {
-    document.getElementById('tenantEmail').value = prefilledEmail;
-}
-
-// Add itemId to the data before sending
-data.itemId = itemId || '';
+        // Pre-fill email if provided
+        if (prefilledEmail) {
+            document.getElementById('tenantEmail').value = prefilledEmail;
+        }
+        
+        // Handle form submission
         document.getElementById('tenantApplicationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -329,6 +327,9 @@ data.itemId = itemId || '';
             data.submittedAt = new Date().toISOString();
             data.boardId = '9514299675'; // Your board ID from the data
             data.formType = 'tenant_application';
+            
+            // Add itemId to the data if it exists
+            data.itemId = itemId || '';
             
             // Debug log
             console.log('Sending data:', data);
