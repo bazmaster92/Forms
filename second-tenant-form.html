@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete Your Rental Application</title>
+    <title>Rental Application Form</title>
     <style>
         * {
             margin: 0;
@@ -35,12 +35,14 @@
             color: #2c3e50;
             margin-bottom: 10px;
             font-size: 28px;
+            text-align: center;
         }
         
         .subtitle {
             color: #7f8c8d;
             margin-bottom: 30px;
             font-size: 16px;
+            text-align: center;
         }
         
         .form-group {
@@ -59,10 +61,17 @@
             color: #e74c3c;
         }
         
+        .helper-text {
+            font-size: 12px;
+            color: #7f8c8d;
+            margin-top: 4px;
+        }
+        
         input[type="text"],
         input[type="email"],
         input[type="tel"],
         input[type="number"],
+        input[type="date"],
         textarea,
         select {
             width: 100%;
@@ -116,6 +125,7 @@
             cursor: pointer;
             transition: background-color 0.3s;
             width: 100%;
+            margin-top: 10px;
         }
         
         .submit-btn:hover {
@@ -169,98 +179,91 @@
 <body>
     <div class="container">
         <div class="form-wrapper">
-            <h1>Complete Your Rental Application</h1>
-            <p class="subtitle">Step 2: Additional Information</p>
+            <h1>Rental Application Form</h1>
+            <p class="subtitle">Please provide your information for property rental consideration</p>
             
             <div class="info-box">
-                <p>Thank you for your initial application. Please provide the following additional information to complete your rental application.</p>
+                <p>All fields marked with * are required. Please ensure all information is accurate and up-to-date.</p>
             </div>
             
-            <form id="secondTenantForm">
-                <!-- Hidden fields to identify the Monday.com item -->
-                <input type="hidden" id="itemId" name="itemId">
-                <input type="hidden" id="boardId" name="boardId">
-                <input type="hidden" id="tenantEmail" name="tenantEmail">
-                <input type="hidden" id="tenantName" name="tenantName">
-                
-                <!-- Employment Information Section -->
-                <h3 style="margin-bottom: 20px; color: #2c3e50;">Employment Information</h3>
+            <form id="tenantApplicationForm">
+                <!-- Basic Information -->
+                <div class="form-group">
+                    <label for="tenantName">Full Name <span class="required">*</span></label>
+                    <input type="text" id="tenantName" name="tenantName" required>
+                </div>
                 
                 <div class="form-group">
-                    <label for="employerName">Current Employer Name <span class="required">*</span></label>
-                    <input type="text" id="employerName" name="employerName" required>
+                    <label for="tenantEmail">Email Address <span class="required">*</span></label>
+                    <input type="email" id="tenantEmail" name="tenantEmail" required>
+                    <p class="helper-text">We'll use this to contact you about your application</p>
                 </div>
+                
+                <div class="form-group">
+                    <label for="tenantPhone">Phone Number <span class="required">*</span></label>
+                    <input type="tel" id="tenantPhone" name="tenantPhone" placeholder="+44 7700 900000" required>
+                </div>
+                
+                <!-- Employment Information -->
+                <h3 style="margin: 30px 0 20px 0; color: #2c3e50;">Employment Details</h3>
                 
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="position">Job Title/Position <span class="required">*</span></label>
-                        <input type="text" id="position" name="position" required>
+                        <label for="occupation">Occupation <span class="required">*</span></label>
+                        <input type="text" id="occupation" name="occupation" placeholder="e.g., Software Engineer" required>
                     </div>
                     
                     <div class="form-group">
-                        <label for="employmentDuration">Length of Employment <span class="required">*</span></label>
-                        <input type="text" id="employmentDuration" name="employmentDuration" placeholder="e.g., 2 years 3 months" required>
+                        <label for="grossIncome">Gross Annual Income (£) <span class="required">*</span></label>
+                        <input type="number" id="grossIncome" name="grossIncome" placeholder="30000" min="0" required>
                     </div>
                 </div>
                 
                 <div class="form-group">
-                    <label for="employerPhone">Employer Phone Number</label>
-                    <input type="tel" id="employerPhone" name="employerPhone" placeholder="+44 20 1234 5678">
+                    <label for="employmentInfo">Employment Information <span class="required">*</span></label>
+                    <textarea id="employmentInfo" name="employmentInfo" placeholder="Please provide details about your current employment including:&#10;- Employer name and address&#10;- How long you've been employed&#10;- Employment type (permanent/contract/self-employed)&#10;- Any additional income sources" required></textarea>
                 </div>
                 
-                <!-- Reference Information Section -->
-                <h3 style="margin: 30px 0 20px 0; color: #2c3e50;">Reference Information</h3>
+                <!-- Current Living Situation -->
+                <h3 style="margin: 30px 0 20px 0; color: #2c3e50;">Current Living Situation</h3>
+                
+                <div class="form-group">
+                    <label for="currentRentalStatus">Current Rental Status <span class="required">*</span></label>
+                    <select id="currentRentalStatus" name="currentRentalStatus" required>
+                        <option value="">Please select...</option>
+                        <option value="Renting - Private Landlord">Renting - Private Landlord</option>
+                        <option value="Renting - Estate Agent">Renting - Estate Agent</option>
+                        <option value="Living with Parents/Family">Living with Parents/Family</option>
+                        <option value="Owner Occupier">Owner Occupier</option>
+                        <option value="Student Accommodation">Student Accommodation</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="reasonForMove">Reason for Moving <span class="required">*</span></label>
+                    <textarea id="reasonForMove" name="reasonForMove" placeholder="Please explain why you're looking to move..." required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="moveInDate">Desired Move-in Date <span class="required">*</span></label>
+                    <input type="date" id="moveInDate" name="moveInDate" required>
+                    <p class="helper-text">Please select your preferred move-in date</p>
+                </div>
+                
+                <!-- References and Emergency Contact -->
+                <h3 style="margin: 30px 0 20px 0; color: #2c3e50;">References & Emergency Contact</h3>
                 
                 <div class="form-group">
                     <label for="referenceEmail">Reference Email Address <span class="required">*</span></label>
-                    <input type="email" id="referenceEmail" name="referenceEmail" required>
+                    <input type="email" id="referenceEmail" name="referenceEmail" placeholder="reference@example.com" required>
+                    <p class="helper-text">Email of your current landlord, employer, or professional reference</p>
                 </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="referenceName">Reference Name <span class="required">*</span></label>
-                        <input type="text" id="referenceName" name="referenceName" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="referenceRelation">Relationship to Reference <span class="required">*</span></label>
-                        <select id="referenceRelation" name="referenceRelation" required>
-                            <option value="">Select...</option>
-                            <option value="Current Landlord">Current Landlord</option>
-                            <option value="Previous Landlord">Previous Landlord</option>
-                            <option value="Employer">Employer</option>
-                            <option value="Professional Reference">Professional Reference</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                </div>
-                
-                <!-- Emergency Contact Section -->
-                <h3 style="margin: 30px 0 20px 0; color: #2c3e50;">Emergency Contact</h3>
                 
                 <div class="form-group">
-                    <label for="emergencyName">Emergency Contact Name <span class="required">*</span></label>
-                    <input type="text" id="emergencyName" name="emergencyName" required>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="emergencyPhone">Emergency Contact Phone <span class="required">*</span></label>
-                        <input type="tel" id="emergencyPhone" name="emergencyPhone" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="emergencyRelation">Relationship <span class="required">*</span></label>
-                        <input type="text" id="emergencyRelation" name="emergencyRelation" placeholder="e.g., Parent, Sibling, Friend" required>
-                    </div>
-                </div>
-                
-                <!-- Additional Information -->
-                <h3 style="margin: 30px 0 20px 0; color: #2c3e50;">Additional Information</h3>
-                
-                <div class="form-group">
-                    <label for="additionalInfo">Any additional information you'd like to provide</label>
-                    <textarea id="additionalInfo" name="additionalInfo" placeholder="Please include any information that might support your application..."></textarea>
+                    <label for="emergencyContact">Emergency Contact Number <span class="required">*</span></label>
+                    <input type="tel" id="emergencyContact" name="emergencyContact" placeholder="+44 7700 900000" required>
+                    <p class="helper-text">Phone number of someone we can contact in case of emergency</p>
                 </div>
                 
                 <button type="submit" class="submit-btn" id="submitBtn">Submit Application</button>
@@ -271,7 +274,7 @@
                 
                 <div class="success-message" id="successMessage">
                     <h3>Application Submitted Successfully!</h3>
-                    <p>Thank you for completing your rental application. We'll review your information and contact you soon.</p>
+                    <p>Thank you for your application. We'll review your information and contact you within 48 hours.</p>
                 </div>
                 
                 <div class="error-message" id="errorMessage">
@@ -283,24 +286,14 @@
     </div>
     
     <script>
-        // IMPORTANT: Replace this with your actual Make.com webhook URL
+        // Your webhook URL
         const WEBHOOK_URL = 'https://hook.eu1.make.com/oo3j6g3jt7jugu7q17xxgqc7h15olm5s';
         
-        // Get URL parameters and populate hidden fields
-        const urlParams = new URLSearchParams(window.location.search);
-        document.getElementById('itemId').value = urlParams.get('itemId') || '';
-        document.getElementById('boardId').value = urlParams.get('boardId') || '';
-        document.getElementById('tenantEmail').value = urlParams.get('email') || '';
-        document.getElementById('tenantName').value = urlParams.get('name') || '';
-        
-        // Display tenant name if available
-        if (urlParams.get('name')) {
-            const subtitle = document.querySelector('.subtitle');
-            subtitle.textContent = `Step 2: Additional Information for ${urlParams.get('name')}`;
-        }
+        // Set minimum date to today
+        document.getElementById('moveInDate').min = new Date().toISOString().split('T')[0];
         
         // Handle form submission
-        document.getElementById('secondTenantForm').addEventListener('submit', async function(e) {
+        document.getElementById('tenantApplicationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
             const submitBtn = document.getElementById('submitBtn');
@@ -320,8 +313,13 @@
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
             
-            // Add timestamp
+            // Add timestamp and board ID
             data.submittedAt = new Date().toISOString();
+            data.boardId = '9514299675'; // Your board ID from the data
+            data.formType = 'tenant_application';
+            
+            // Debug log
+            console.log('Sending data:', data);
             
             try {
                 // Send to Make.com webhook
@@ -333,16 +331,20 @@
                     body: JSON.stringify(data)
                 });
                 
+                console.log('Response status:', response.status);
+                
                 if (response.ok) {
                     // Success
                     this.style.display = 'none';
                     successMessage.style.display = 'block';
                 } else {
+                    const errorText = await response.text();
+                    console.error('Error response:', errorText);
                     throw new Error('Submission failed');
                 }
             } catch (error) {
                 // Error
-                console.error('Error:', error);
+                console.error('Error details:', error);
                 errorMessage.style.display = 'block';
                 submitBtn.disabled = false;
             } finally {
