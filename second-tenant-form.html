@@ -293,6 +293,18 @@
         document.getElementById('moveInDate').min = new Date().toISOString().split('T')[0];
         
         // Handle form submission
+        // Get URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const itemId = urlParams.get('itemId');
+const prefilledEmail = urlParams.get('email');
+
+// Pre-fill email if provided
+if (prefilledEmail) {
+    document.getElementById('tenantEmail').value = prefilledEmail;
+}
+
+// Add itemId to the data before sending
+data.itemId = itemId || '';
         document.getElementById('tenantApplicationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
