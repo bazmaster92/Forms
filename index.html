@@ -296,10 +296,20 @@
         const urlParams = new URLSearchParams(window.location.search);
         const itemId = urlParams.get('itemId');
         const prefilledEmail = urlParams.get('email');
-
-        // Pre-fill email if provided
+        const prefilledName = urlParams.get('name');
+        const prefilledPhone = urlParams.get('phone');
+        
+        // Pre-fill form fields if provided
         if (prefilledEmail) {
             document.getElementById('tenantEmail').value = prefilledEmail;
+        }
+        
+        if (prefilledName) {
+            document.getElementById('tenantName').value = prefilledName;
+        }
+        
+        if (prefilledPhone) {
+            document.getElementById('tenantPhone').value = prefilledPhone;
         }
         
         // Handle form submission
